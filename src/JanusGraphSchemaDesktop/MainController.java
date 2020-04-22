@@ -3,11 +3,14 @@ package JanusGraphSchemaDesktop;
 
 import JanusGraphSchemaDesktop.Dialogs.JanusPropertyKeyDialog;
 import JanusGraphSchemaDesktop.Dialogs.JanusTextInputDialog;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -32,7 +35,15 @@ public class MainController implements Initializable {
     Button btnConnect;
 
     @FXML
-    ListView<VertexLabel> lvVertex;
+    TableView<VertexModel> tvVertex;
+    @FXML
+    TableColumn<VertexModel,String> colVertexLabelName;
+    @FXML
+    TableColumn<VertexModel,Boolean> colVertexPartitioned;
+    @FXML
+    TableColumn<VertexModel,Boolean> colVertexStatic;
+
+
     @FXML
     ListView<PropertyKey>lvProperty;
     @FXML
@@ -54,18 +65,33 @@ public class MainController implements Initializable {
 
 
     void initVertexContextMenu(){
+        colVertexLabelName.setCellValueFactory(
+                new PropertyValueFactory<VertexModel,String>("label")
+        );
+        colVertexPartitioned.setCellValueFactory(
+                new PropertyValueFactory<VertexModel,Boolean>("partitioned")
+        );
+        colVertexStatic.setCellValueFactory(
+                new PropertyValueFactory<VertexModel,Boolean>("isStatic")
+        );
+
         muVertex=new ContextMenu();
         MenuItem refressh=new MenuItem("刷新");
         refressh.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 //TODO：刷新操作
-                lvVertex.getItems().clear();
+                tvVertex.getItems().clear();
                 Iterable<VertexLabel> vertexes=app.getVertexeLabels();
+                final ObservableList<VertexModel> data = FXCollections.observableArrayList();
+
                 for (VertexLabel lb :
                         vertexes) {
-                    lvVertex.getItems().add(lb);
+                    data.add(new VertexModel(lb.name(),lb.isPartitioned(),lb.isStatic(),lb));
+
                 }
+
+                tvVertex.setItems(data);
             }
         });
 
@@ -94,12 +120,14 @@ public class MainController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 //TODO：删除
-               VertexLabel vertexLabel=  lvVertex.getSelectionModel().getSelectedItem();
-               app.removeVertex(vertexLabel.name());
+               VertexModel vertex=  tvVertex.getSelectionModel().getSelectedItem();
+               app.removeVertex(vertex.getLabel());
             }
         });
         muVertex.getItems().addAll(refressh,add,modify,delete);
-        lvVertex.setContextMenu(muVertex);
+        tvVertex.setContextMenu(muVertex);
+
+
     }
 
     void initPropertyContextMenu(){

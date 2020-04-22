@@ -18,7 +18,12 @@
     </FlowPane>
     <AnchorPane GridPane.columnIndex="0" GridPane.rowIndex="1">
         <Label text="节点(Vertex)" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-        <ListView fx:id="lvVertex" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+        <TableView fx:id="tvVertex" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
+         <columns>
+            <TableColumn fx:id="colVertexLabelName" prefWidth="75.0" text="Vertex Label Name" />
+            <TableColumn fx:id="colVertexPartitioned" prefWidth="75.0" text="Partitioned" />
+            <TableColumn fx:id="colVertexStatic" prefWidth="75.0" text="Static" />
+         </columns></TableView>
     </AnchorPane>
     <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
         <Label text="属性(Property)" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
