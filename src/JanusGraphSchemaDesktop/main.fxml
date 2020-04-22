@@ -4,18 +4,46 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="rootLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JanusGraphSchemaDesktop.MainController">
-<children>
-    <ToolBar prefHeight="40.0" prefWidth="500.0">
-        <items>
-            <Label text="Janusgraph配置文件路径:" />
+<GridPane fx:id="rootLayout" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JanusGraphSchemaDesktop.MainController">
+    <FlowPane prefHeight="40.0" prefWidth="-Infinity" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="0">
+        <HBox alignment="CENTER_LEFT" spacing="5.0">
+            <Label text="Janusgraph配置文件路径:">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin></Label>
             <TextField fx:id="tbConfigFile" prefWidth="600" text="./conf/gremlin-server/janusgraph-cql-es-server.properties" />
-            <Button fx:id="btnChooseConfigFile" mnemonicParsing="false" onAction="#onChooseConfigFile" text="浏览..." />
+            <Button fx:id="btnChooseConfigFile" mnemonicParsing="false" onAction="#onChooseConfigFile" prefHeight="23.0" prefWidth="58.0" text="浏览..." />
             <Button fx:id="btnConnect" mnemonicParsing="false" onAction="#onConnect" text="连接图库" />
-        </items>
-        <VBox.margin>
-            <Insets left="5.0" right="5.0" />
-        </VBox.margin>
-    </ToolBar>
-</children>
-</VBox>
+        </HBox>
+    </FlowPane>
+    <AnchorPane GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <Label text="节点(Vertex)" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+        <ListView fx:id="lvVertex" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+    </AnchorPane>
+    <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <Label text="属性(Property)" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+        <ListView fx:id="lvProperty" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+    </AnchorPane>
+    <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+        <Label text="关系(Edge)" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+        <ListView fx:id="lvEdge" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+    </AnchorPane>
+    <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
+        <Label text="索引(Index)" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+        <ListView fx:id="lvIndex" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+   </AnchorPane>
+    <AnchorPane GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="2">
+        <Label prefWidth="24.0" text="就绪" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+    </AnchorPane>
+   <columnConstraints>
+      <ColumnConstraints percentWidth="25" />
+       <ColumnConstraints percentWidth="25" />
+       <ColumnConstraints percentWidth="25" />
+       <ColumnConstraints percentWidth="25" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="3" />
+      <RowConstraints percentHeight="95" />
+       <RowConstraints percentHeight="2" />
+   </rowConstraints>
+</GridPane>
