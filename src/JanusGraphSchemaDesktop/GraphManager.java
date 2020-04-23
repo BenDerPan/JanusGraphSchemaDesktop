@@ -91,7 +91,7 @@ public class GraphManager extends GraphApp {
         if (data.getIndexType().equals(JanusPropertyKeyDialogData.CompositeIndex)){
             builder.buildCompositeIndex();
         }else{
-            builder.buildMixedIndex("search");
+            builder.buildMixedIndex(data.getIndexSearchBackend());
         }
         mgmt.commit();
 

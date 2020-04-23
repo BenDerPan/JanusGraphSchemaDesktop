@@ -15,6 +15,7 @@ public class JanusPropertyKeyDialogData {
     private Boolean isIndexUnique=false;
     private String indexName;
     private String indexType=MixedIndex;
+    private String indexSearchBackend="elasticsearch";
 
     public String getPropertyKey(){
         return this.propertyKey;
@@ -71,8 +72,13 @@ public class JanusPropertyKeyDialogData {
         return this.indexType;
     }
 
-    public void setIndexType(String indexType){
-        this.indexType=indexType;
+    public void setIndexType(String indexType){this.indexType=indexType;}
+
+    public String getIndexSearchBackend(){
+        return this.indexSearchBackend;
+    }
+    public void setIndexSearchBackend(String indexSearchBackend){
+        this.indexSearchBackend=indexSearchBackend;
     }
 
     public JanusPropertyKeyDialogData() {

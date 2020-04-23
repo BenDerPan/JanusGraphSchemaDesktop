@@ -22,15 +22,27 @@ public class JanusPropertyKeyDialog extends Dialog<JanusPropertyKeyDialogData> {
 
         VBox root=new VBox();
 
+        Label lbPropertyName=new Label();
+        lbPropertyName.setText("属性名称");
+        root.getChildren().add(lbPropertyName);
+
         TextField tbPropertyKey=new TextField();
         tbPropertyKey.setPromptText("属性名称");
         tbPropertyKey.setText(this.data.getPropertyKey());
         root.getChildren().add(tbPropertyKey);
 
+        Label lbIndexDataType=new Label();
+        lbIndexDataType.setText("属性字段类型");
+        root.getChildren().add(lbIndexDataType);
+
         ComboBox<String> cbDataType=new ComboBox<>();
         cbDataType.getItems().addAll(JanusUtils.SupportDataTypes.keySet());
         cbDataType.getSelectionModel().select(this.data.getDataType());
         root.getChildren().add(cbDataType);
+
+        Label lbIndexCardinality=new Label();
+        lbIndexCardinality.setText("属性值数量集合");
+        root.getChildren().add(lbIndexCardinality);
 
         ComboBox<Cardinality> cbCardinality=new ComboBox<>();
         cbCardinality.getItems().addAll(Cardinality.values());
@@ -42,6 +54,10 @@ public class JanusPropertyKeyDialog extends Dialog<JanusPropertyKeyDialogData> {
         ckShouldIndex.setSelected(this.data.getShouldIndex());
         root.getChildren().add(ckShouldIndex);
 
+        Label lbIndexName=new Label();
+        lbIndexName.setText("索引名称");
+        root.getChildren().add(lbIndexName);
+
         TextField tbIndexName=new TextField();
         tbIndexName.setPromptText("索引名称");
         tbIndexName.setText(this.data.getIndexName());
@@ -52,11 +68,25 @@ public class JanusPropertyKeyDialog extends Dialog<JanusPropertyKeyDialogData> {
         ckIsIndexUnique.setSelected(this.data.getIsIndexUnique());
         root.getChildren().add(ckIsIndexUnique);
 
+        Label lbIndexType=new Label();
+        lbIndexType.setText("索引类型");
+        root.getChildren().add(lbIndexType);
+
         ComboBox<String> cbIndexType=new ComboBox<>();
         cbIndexType.getItems().addAll(JanusPropertyKeyDialogData.CompositeIndex
                 ,JanusPropertyKeyDialogData.MixedIndex);
         cbIndexType.getSelectionModel().select(this.data.getIndexType());
         root.getChildren().add(cbIndexType);
+
+        Label lbIndexBackend=new Label();
+        lbIndexBackend.setText("外部索引后端");
+        root.getChildren().add(lbIndexBackend);
+
+        TextField tbIndexBackend=new TextField();
+        tbIndexBackend.setPromptText("Index Search Backend");
+        tbIndexBackend.setText(this.data.getIndexSearchBackend());
+        root.getChildren().add(tbIndexBackend);
+
 
         this.getDialogPane().setContent(root);
 
@@ -70,6 +100,7 @@ public class JanusPropertyKeyDialog extends Dialog<JanusPropertyKeyDialogData> {
                     this.data.setIndexName(tbIndexName.getText());
                     this.data.setIsIndexUnique(ckIsIndexUnique.isSelected());
                     this.data.setIndexType(cbIndexType.getSelectionModel().getSelectedItem());
+                    this.data.setIndexSearchBackend(tbIndexBackend.getText());
                 }
                 return this.data;
             }
