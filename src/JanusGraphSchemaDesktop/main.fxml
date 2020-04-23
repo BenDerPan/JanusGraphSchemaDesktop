@@ -16,39 +16,108 @@
             <Button fx:id="btnConnect" mnemonicParsing="false" onAction="#onConnect" text="连接图库" />
         </HBox>
     </FlowPane>
-    <AnchorPane GridPane.columnIndex="0" GridPane.rowIndex="1">
-        <Label text="节点(Vertex)" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-        <TableView fx:id="tvVertex" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
-         <columns>
-            <TableColumn fx:id="colVertexLabelName" prefWidth="75.0" text="Vertex Label Name" />
-            <TableColumn fx:id="colVertexPartitioned" prefWidth="75.0" text="Partitioned" />
-            <TableColumn fx:id="colVertexStatic" prefWidth="75.0" text="Static" />
-         </columns></TableView>
+
+<!--    节点-->
+    <AnchorPane GridPane.columnIndex="0" GridPane.rowIndex="1" >
+    <TitledPane text="节点(Vertex)" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+        <TableView fx:id="tvVertex" >
+            <columns>
+                <TableColumn fx:id="colVertexLabelName" prefWidth="75.0" text="Vertex Label Name" />
+                <TableColumn fx:id="colVertexPartitioned" prefWidth="75.0" text="Partitioned" />
+                <TableColumn fx:id="colVertexStatic" prefWidth="75.0" text="Static" />
+            </columns>
+        </TableView>
+    </TitledPane>
     </AnchorPane>
-    <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-        <Label text="属性(Property)" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-        <ListView fx:id="lvProperty" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+
+<!--    属性-->
+    <AnchorPane GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <TitledPane text="属性(Property)" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <TableView fx:id="tvProperty">
+                <columns>
+                    <TableColumn fx:id="colPropertyKeyName" prefWidth="75.0" text="Property Key Name" />
+                    <TableColumn fx:id="colPropertyCardinality" prefWidth="75.0" text="Cardinality" />
+                    <TableColumn fx:id="colPropertyDataType" prefWidth="75.0" text="Data Type" />
+                </columns>
+            </TableView>
+        </TitledPane>
+
     </AnchorPane>
-    <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
-        <Label text="关系(Edge)" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-        <ListView fx:id="lvEdge" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+
+<!--    关系-->
+    <AnchorPane GridPane.columnIndex="0" GridPane.rowIndex="3">
+        <TitledPane text="关系(Edge)" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <TableView fx:id="tvEdge" >
+                <columns>
+                    <TableColumn fx:id="colEdgeLabelName" prefWidth="75.0" text="Edge Label Name" />
+                    <TableColumn fx:id="colEdgeDirected" prefWidth="75.0" text="Directed" />
+                    <TableColumn fx:id="colEdgeUndirected" prefWidth="75.0" text="Unidirected" />
+                    <TableColumn fx:id="colEdgeMultiplicity" prefWidth="75.0" text="Multiplicity" />
+                </columns>
+            </TableView>
+        </TitledPane>
     </AnchorPane>
-    <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
-        <Label text="索引(Index)" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-        <ListView fx:id="lvIndex" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+
+<!--    节点索引-->
+    <AnchorPane GridPane.columnIndex="0" GridPane.rowIndex="4">
+        <TitledPane text="Vertex索引(Index)" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <TableView fx:id="tvVertexIndex" >
+                <columns>
+                    <TableColumn fx:id="colVertexIndexName" prefWidth="75.0" text="Vertex Index Name" />
+                    <TableColumn fx:id="colVertexIndexType" prefWidth="75.0" text="Type" />
+                    <TableColumn fx:id="colVertexIndexUnique" prefWidth="75.0" text="Unique" />
+                    <TableColumn fx:id="colVertexIndexBacking" prefWidth="75.0" text="Backing" />
+                    <TableColumn fx:id="colVertexIndexKey" prefWidth="75.0" text="Key" />
+                    <TableColumn fx:id="colVertexIndexStatus" prefWidth="75.0" text="Status" />
+                </columns>
+            </TableView>
+        </TitledPane>
+
    </AnchorPane>
-    <AnchorPane GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="2">
+    <AnchorPane GridPane.columnIndex="0" GridPane.rowIndex="5">
+        <TitledPane text="Edge索引(Index)" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <TableView fx:id="tvEdgeIndex" >
+                <columns>
+                    <TableColumn fx:id="colEdgeIndexName" prefWidth="75.0" text="Edge Index (VCI) Name" />
+                    <TableColumn fx:id="colEdgeIndexType" prefWidth="75.0" text="Type" />
+                    <TableColumn fx:id="colEdgeIndexUnique" prefWidth="75.0" text="Unique" />
+                    <TableColumn fx:id="colEdgeIndexBacking" prefWidth="75.0" text="Backing" />
+                    <TableColumn fx:id="colEdgeIndexKey" prefWidth="75.0" text="Key" />
+                    <TableColumn fx:id="colEdgeIndexStatus" prefWidth="75.0" text="Status" />
+                </columns>
+            </TableView>
+        </TitledPane>
+
+    </AnchorPane>
+    <AnchorPane GridPane.columnIndex="0" GridPane.rowIndex="6">
+        <TitledPane text="Relation索引(Index)" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <TableView fx:id="tvRelationIndex">
+                <columns>
+                    <TableColumn fx:id="colRelationIndexName" prefWidth="75.0" text="Relation Index" />
+                    <TableColumn fx:id="colRelationIndexType" prefWidth="75.0" text="Type" />
+                    <TableColumn fx:id="colRelationIndexDirection" prefWidth="75.0" text="Direction" />
+                    <TableColumn fx:id="colRelationIndexSortKey" prefWidth="75.0" text="Sort Key" />
+                    <TableColumn fx:id="colRelationIndexOrder" prefWidth="75.0" text="Order" />
+                    <TableColumn fx:id="colRelationIndexStatus" prefWidth="75.0" text="Status" />
+                </columns>
+            </TableView>
+        </TitledPane>
+
+    </AnchorPane>
+    <AnchorPane GridPane.columnIndex="0"  GridPane.rowIndex="7" GridPane.vgrow="NEVER">
         <Label prefWidth="24.0" text="就绪" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
     </AnchorPane>
    <columnConstraints>
-      <ColumnConstraints percentWidth="25" />
-       <ColumnConstraints percentWidth="25" />
-       <ColumnConstraints percentWidth="25" />
-       <ColumnConstraints percentWidth="25" />
+      <ColumnConstraints percentWidth="100" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints percentHeight="3" />
-      <RowConstraints percentHeight="95" />
-       <RowConstraints percentHeight="2" />
+      <RowConstraints prefHeight="30" maxHeight="30" />
+       <RowConstraints  />
+       <RowConstraints  />
+       <RowConstraints />
+       <RowConstraints  />
+       <RowConstraints  />
+       <RowConstraints  />
+       <RowConstraints prefHeight="20" maxHeight="20"/>
    </rowConstraints>
 </GridPane>

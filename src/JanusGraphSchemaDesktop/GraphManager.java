@@ -1,11 +1,9 @@
 package JanusGraphSchemaDesktop;
 import JanusGraphSchemaDesktop.Dialogs.JanusPropertyKeyDialogData;
 import JanusGraphSchemaDesktop.Dialogs.JanusTextInputDialog;
+import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
-import org.janusgraph.core.Cardinality;
-import org.janusgraph.core.JanusGraph;
-import org.janusgraph.core.PropertyKey;
-import org.janusgraph.core.VertexLabel;
+import org.janusgraph.core.*;
 import org.janusgraph.core.schema.JanusGraphIndex;
 import org.janusgraph.core.schema.JanusGraphManagement;
 import org.janusgraph.core.schema.SchemaAction;
@@ -35,6 +33,8 @@ public class GraphManager extends GraphApp {
         }
         return _mgmt;
     }
+
+
 
     JanusGraph getGraph(){
         return  (JanusGraph) graph;
@@ -102,9 +102,19 @@ public class GraphManager extends GraphApp {
         mgmt.commit();
     }
 
-    public Iterable<JanusGraphIndex> getIndexes(){
+    public Iterable<JanusGraphIndex> getVertexIndexes(){
         JanusGraphManagement mgmt=getMgmt();
         return mgmt.getGraphIndexes(Vertex.class);
+    }
+
+    public Iterable<EdgeLabel> getEdgeLabels(){
+        JanusGraphManagement mgmt=getMgmt();
+        return mgmt.getRelationTypes(EdgeLabel.class);
+    }
+    public Iterable<JanusGraphIndex> getRelationIndexes(){
+        JanusGraphManagement mgmt=getMgmt();
+        mgmt.getRelationTypes(EdgeLabel.class);
+        return null;
     }
 
 }
